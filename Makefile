@@ -30,7 +30,6 @@ install-eksctl:
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(UNAME_S)_amd64.tar.gz" | tar xz -C /tmp
 	sudo mv /tmp/eksctl /usr/local/bin
 
-
 install-arkade:
 	curl -sLS https://dl.get-arkade.dev | sudo sh
 
