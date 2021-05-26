@@ -1,6 +1,8 @@
-UNAME_S        := $(shell uname -s)
 CLUSTER_NAME   := fargate-cluster
 CLUSTER_CONFIG := bootstrap/eks-fargate-config.yaml
+CLUSTER_REGION := eu-west-1
+
+UNAME_S        := $(shell uname -s)
 
 all: create
 
@@ -64,7 +66,7 @@ clean-files:
 	rm -f AWSCLIV2.pkg
 
 clean-eks: clean-files
-	eksctl delete cluster $(CLUSTER_NAME) --region eu-west-1
+	eksctl delete cluster $(CLUSTER_NAME) --region $(CLUSTER_REGION)
 
 clean-minikube: clean-files
 	minikube delete
