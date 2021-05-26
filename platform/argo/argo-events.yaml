@@ -4,7 +4,7 @@ metadata:
   name: argo-events
   namespace: argocd
 spec:
-  project: default
+  project: platform
   destination:
     namespace: argo-events
     server: https://kubernetes.default.svc
