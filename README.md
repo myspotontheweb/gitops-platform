@@ -16,6 +16,11 @@ Install software
 
 ```
 make install
+
+#
+# Update path to include installed tools
+#
+export PATH=$PATH:$HOME/.arkade/bin
 ```
 
 Create EKS cluster
