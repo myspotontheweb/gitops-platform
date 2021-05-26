@@ -5,16 +5,25 @@ all: create
 #
 # Create Kubernetes cluster
 #
-create: bootstrap-eks
-	ark install argocd
+create: create-eks
+
+create-eks: bootstrap-eks bootstrap-services
+
+create-minikube: bootstrap-minikube bootstrap-services
 
 bootstrap-eks:
 	eksctl create cluster -f bootstrap/eks-fargate-config.yaml
 
+bootstrap-minikube:
+	minikube start --cpus=2 --memory=4g
+
+bootstrap-services:
+	ark install argocd
+
 #
 # Install targets
 #
-install: install-aws-cli install-eksctl install-arkade install-deps 
+install: install-aws-cli install-eksctl install-arkade install-tools
 
 install-aws-cli:
 ifeq ($(UNAME_S), Linux)
@@ -33,7 +42,8 @@ install-eksctl:
 install-arkade:
 	curl -sLS https://dl.get-arkade.dev | sudo sh
 
-install-deps:
+install-tools:
+	ark get minikube
 	ark get kubectl
 	ark get helm
 	ark get kubectx
@@ -44,13 +54,16 @@ install-deps:
 #
 # Remove everything
 #
-clean: clean-eks clean-files
+clean: clean-eks
 
 clean-files:
 	rm -rf aws
 	rm -f awscliv2.zip
 	rm -f AWSCLIV2.pkg
 
-clean-eks:
+clean-eks: clean-files
 	eksctl delete cluster fargate-cluster --region eu-west-1
+
+clean-minikube: clean-files
+	minikube delete
 
