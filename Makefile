@@ -23,6 +23,7 @@ bootstrap-minikube:
 
 bootstrap-services:
 	ark install argocd
+	kubectl apply -f projects/platform.yaml
 
 #
 # Install targets
