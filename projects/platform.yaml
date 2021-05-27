@@ -27,7 +27,7 @@ spec:
       repoURL: https://github.com/myspotontheweb/gitops-platform.git
       revision: HEAD
       directories:
-      - path: charts/*
+      - path: platform/*
   template:
     metadata:
       name: '{{path.basename}}'
@@ -36,9 +36,6 @@ spec:
       source:
         repoURL: https://github.com/myspotontheweb/gitops-platform.git
         path: '{{path}}'
-        helm:
-          valueFiles:
-          - values-platform.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: 'platform-{{path.basename}}'
