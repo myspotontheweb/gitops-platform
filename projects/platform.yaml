@@ -18,21 +18,32 @@ spec:
   - '*'
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: platform
-  namespace: argocd
+  name: cluster-services
 spec:
-  project: platform
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://github.com/myspotontheweb/gitops-platform.git
-    path: platform
-    directory:
-      recurse: true
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  generators:
+  - git:
+      repoURL: https://github.com/myspotontheweb/gitops-platform.git
+      directories:
+      - path: charts
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/myspotontheweb/gitops-platform.git
+        path: '{{path}}'
+        helm:
+          valuesFiles:
+          - values-platform.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
