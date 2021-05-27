@@ -29,3 +29,27 @@ Create EKS cluster
 make 
 ```
 
+## ArgoCD
+
+Start a proxy to expose the UI
+
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+Retrieve password
+
+```
+PASS=$(kubectl -n argocd get secret argocd-initial-admin-secret -ogo-template='{{.data.password | base64decode}}')
+echo $PASS
+```
+
+Login to the UI
+
+* http://localhost:8080
+
+or login with CLI
+
+```
+argocd login localhost:8080 --insecure --username=admin --password=$PASS
+```
