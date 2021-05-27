@@ -24,6 +24,7 @@ bootstrap-minikube:
 bootstrap-services:
 	kubectl create namespace argocd
 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/applicationset/v0.1.0/manifests/install.yaml
 	kubectl apply -f bootstrap/projects.yaml
 
 #
