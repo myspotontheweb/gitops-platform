@@ -27,7 +27,7 @@ spec:
       repoURL: https://github.com/myspotontheweb/gitops-platform.git
       revision: HEAD
       directories:
-      - path: charts
+      - path: charts/*
   template:
     metadata:
       name: '{{path.basename}}'
