@@ -22,7 +22,8 @@ bootstrap-minikube:
 	minikube start --cpus=2 --memory=4g
 
 bootstrap-services:
-	ark install argocd
+	kubectl create namespace argocd
+	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 	kubectl apply -f bootstrap/projects.yaml
 
 #

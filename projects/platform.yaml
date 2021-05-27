@@ -31,7 +31,7 @@ spec:
     metadata:
       name: '{{path.basename}}'
     spec:
-      project: default
+      project: platform
       source:
         repoURL: https://github.com/myspotontheweb/gitops-platform.git
         path: '{{path}}'
