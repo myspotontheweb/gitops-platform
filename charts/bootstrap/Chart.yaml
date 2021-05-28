@@ -1,0 +1,5 @@
+apiVersion: v2
+name: bootstrap
+description: A Helm chart for initializing cluster services on a new cluster
+type: application
+version: 0.1.0

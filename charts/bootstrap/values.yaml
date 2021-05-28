@@ -1,0 +1,3 @@
+project: platform
+source:
+  repo: https://github.com/myspotontheweb/gitops-platform.git

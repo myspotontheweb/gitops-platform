@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-events
+spec:
+  generators:
+  - clusters: {} 
+  template:
+    metadata:
+      name: '{{`{{name}}`}}-argo-events'
+    spec:
+      project: {{ .Values.project }}
+      source:
+        repoURL: {{ .Values.source.repo }}
+        targetRevision: HEAD
+        path: charts/argo-events
+      destination:
+        server: '{{`{{server}}`}}' 
+        namespace: argo-events
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
