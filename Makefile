@@ -1,4 +1,4 @@
-CLUSTER_NAME   := fargate-cluster
+CLUSTER_NAME   := fargate-cluster1
 CLUSTER_CONFIG := bootstrap/eks/$(CLUSTER_NAME).yaml
 CLUSTER_REGION := eu-west-1
 
