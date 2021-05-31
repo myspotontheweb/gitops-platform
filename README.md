@@ -29,6 +29,10 @@ Create EKS cluster
 make 
 ```
 
+NOTE:
+
+* See [Issue #2](https://github.com/myspotontheweb/gitops-platform/issues/2) for work-around to known startup bug
+
 ## ArgoCD
 
 Start a proxy to expose the UI
