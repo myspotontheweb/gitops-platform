@@ -57,3 +57,38 @@ or login with CLI
 ```
 argocd login localhost:8080 --insecure --username=admin --password=$PASS
 ```
+
+## Adding a new cluster
+
+Start a second cluster
+
+```
+eksctl create cluster -f bootstrap/eks/fargate-cluster2.yaml
+```
+
+Add it to ArgoCD
+
+```
+argocd cluster add <context name> --name cluster2
+```
+
+Wait for it to synchronize
+
+```
+$ argocd cluster list
+SERVER                                                                    NAME        VERSION  STATUS      MESSAGE
+https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.eu-west-1.eks.amazonaws.com  cluster2    1.20+    Successful
+https://kubernetes.default.svc                                            in-cluster  1.20+    Successful
+```
+
+Note how applications are automatically deployed to this cluster
+
+```
+$ argocd app list
+NAME                    CLUSTER                                                                   NAMESPACE    PROJECT   STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                                   PATH                TARGET
+bootstrap               https://kubernetes.default.svc                                            argocd       default   Synced  Healthy  Auto-Prune  <none>      https://github.com/myspotontheweb/gitops-platform.git  charts/bootstrap
+in-cluster-argo-events  https://kubernetes.default.svc                                            argo-events  platform  Synced  Healthy  Auto-Prune  <none>      https://github.com/myspotontheweb/gitops-platform.git  charts/argo-events  HEAD
+cluster2-argo-events    https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.eu-west-1.eks.amazonaws.com  argo-events  platform  Synced  Healthy  Auto-Prune  <none>      https://github.com/myspotontheweb/gitops-platform.git  charts/argo-events  HEAD
+..
+..
+```
