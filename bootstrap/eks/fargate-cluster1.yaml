@@ -5,6 +5,7 @@ kind: ClusterConfig
 metadata:
   name: fargate-cluster1
   region: eu-west-1
+  version: "1.20"
 
 fargateProfiles:
   - name: fp-default
