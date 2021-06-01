@@ -53,6 +53,7 @@ install-tools:
 	ark get minikube
 	ark get kubectl
 	ark get helm
+	ark get kustomize
 	ark get kubectx
 	ark get kubens
 	ark get argocd
