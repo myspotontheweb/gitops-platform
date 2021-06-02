@@ -92,3 +92,29 @@ cluster2-argo-events    https://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.eu-west-1.e
 ..
 ..
 ```
+
+## Adding workloads
+
+Workloads are managed in a separate repository
+
+* https://github.com/myspotontheweb/gitops-workloads
+
+Deployed as follows:
+
+```
+#
+# Create bootstrap app
+#
+argocd app create workloads-bootstrap \
+  --repo https://github.com/myspotontheweb/gitops-workloads.git \
+  --path projects \
+  --project default \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace argocd
+
+#
+# Set sync policy
+#
+argocd app set workloads-bootstrap --sync-policy automated --self-heal
+```
+
