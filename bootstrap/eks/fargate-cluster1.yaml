@@ -13,4 +13,4 @@ fargateProfiles:
       - namespace: default
       - namespace: kube-system
       - namespace: argocd
-      - namespace: argo-events
+      - namespace: argo-projects
