@@ -5,8 +5,8 @@ type: application
 version: 0.1.0
 
 dependencies:
-- name: argo
-  version: 1.0.0
+- name: argo-workflows
+  version: 0.2.4
   repository: https://argoproj.github.io/argo-helm
 - name: argo-events
   version: 1.6.1
