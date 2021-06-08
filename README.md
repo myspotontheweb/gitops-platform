@@ -118,3 +118,15 @@ argocd app create workloads-bootstrap \
 argocd app set workloads-bootstrap --sync-policy automated --self-heal
 ```
 
+Depending on the workloads you might need registry secrets in each namespace
+
+```
+REG=c8n.io
+USER=myspotontheweb
+PASS=??
+EMAIL=mark@myspotontheweb.com
+
+kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n dev
+kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n test
+kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n prod
+```
