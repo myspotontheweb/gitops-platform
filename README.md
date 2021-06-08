@@ -128,7 +128,7 @@ PASS=??
 
 for ns in dev test prod
 do
-kubectl create ns $ns
-kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n $ns
+  kubectl create ns $ns
+  kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n $ns
 done
 ```
