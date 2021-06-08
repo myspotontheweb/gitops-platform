@@ -122,11 +122,13 @@ Depending on the workloads you might need registry secrets in each namespace
 
 ```
 REG=c8n.io
+EMAIL=mark@myspotontheweb.com
 USER=myspotontheweb
 PASS=??
-EMAIL=mark@myspotontheweb.com
 
-kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n dev
-kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n test
-kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n prod
+for ns in dev test prod
+do
+kubectl create ns $ns
+kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n $ns
+done
 ```
