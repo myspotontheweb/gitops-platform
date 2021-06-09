@@ -7,10 +7,15 @@ metadata:
   region: eu-west-1
   version: "1.20"
 
-ffargateProfiles:
-  - name: fp-default
+fargateProfiles:
+  - name: fp-platform
     selectors:
       - namespace: default
       - namespace: kube-system
       - namespace: argocd
       - namespace: argo-projects
+  - name: fp-workloads
+    selectors:
+      - namespace: dev
+      - namespace: test
+      - namespace: prod
