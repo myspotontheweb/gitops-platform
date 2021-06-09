@@ -31,7 +31,11 @@ make
 
 NOTE:
 
-* See [Issue #2](https://github.com/myspotontheweb/gitops-platform/issues/2) for work-around to known startup bug
+See [Issue #2](https://github.com/myspotontheweb/gitops-platform/issues/2) for work-around to known startup bug
+
+```
+kubectl delete applicationset argo-projects -n argocd
+```
 
 ## ArgoCD
 
