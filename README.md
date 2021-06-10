@@ -107,8 +107,8 @@ Depending on the workloads you might need registry secrets in each namespace
 
 ```
 REG=c8n.io
-EMAIL=mark@myspotontheweb.com
-USER=myspotontheweb
+EMAIL=moconnor@globalization-partners.com
+USER=moconnor@globalization-partners.com
 PASS=??
 
 for ns in dev test prod
