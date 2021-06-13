@@ -103,21 +103,6 @@ Workloads are managed in a separate repository
 
 * https://github.com/myspotontheweb/gitops-workloads
 
-Depending on the workloads you might need registry secrets in each namespace
-
-```
-REG=c8n.io
-EMAIL=moconnor@globalization-partners.com
-USER=moconnor@globalization-partners.com
-PASS=??
-
-for ns in dev test prod
-do
-  kubectl create ns $ns
-  kubectl create secret docker-registry regcred --docker-server=$REG --docker-username=$USER --docker-password=$PASS --docker-email=$EMAIL -n $ns
-done
-```
-
 Deploy the workloads using the argocd command-line:
 
 ```
