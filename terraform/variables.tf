@@ -22,8 +22,8 @@ variable "map_roles" {
 
   default = [
     {
-      rolearn  = "arn:aws:iam::66666666666:role/role1"
-      username = "role1"
+      rolearn  = "arn:aws:iam::602213531414:role/aws-reserved/sso.amazonaws.com/eu-west-1/AWSReservedSSO_AdministratorAccess_e0484c3433b74590"
+      username = "sso-admin"
       groups   = ["system:masters"]
     },
   ]
