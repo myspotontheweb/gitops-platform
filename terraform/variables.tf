@@ -39,8 +39,8 @@ variable "map_users" {
 
   default = [
     {
-      userarn  = "arn:aws:iam::66666666666:user/user1"
-      username = "user1"
+      userarn  = "arn:aws:sts::602213531414:assumed-role/AWSReservedSSO_AdministratorAccess_e0484c3433b74590/mark"
+      username = "mark"
       groups   = ["system:masters"]
     },
     {
